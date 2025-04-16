@@ -7,6 +7,12 @@
     &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.ApiRateTest.ShouldGetEuroToDollarRate&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c134d046_002D8018_002D4444_002Db898_002D036cbc45500f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="WalletTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.WalletTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.ApiRateTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d5355e16_002D9498_002D4525_002Db0f3_002D79ef703cfd3a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.WalletTest&lt;/TestId&gt;&#xD;
