@@ -1,4 +1,4 @@
-﻿namespace Wallet.Tests;
+﻿namespace Wallet;
 
 public enum Currency
 {
