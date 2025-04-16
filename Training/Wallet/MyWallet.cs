@@ -13,6 +13,7 @@ public class MyWallet(params Stock[] stocks)
     public double Value(Currency currency, IRateProvider rateProvider)
     {
         // return _stocks.Aggregate(0d, (total, stock) => total + stock.Quantity);
-        return _stocks.Select(stock => stock.Quantity * rateProvider.Rate(currency, stock.Type)).Sum();
+
+        return _stocks.Select(stock => stock.Quantity * rateProvider.Rate(stock.Type, currency)).Sum();
     }
 }

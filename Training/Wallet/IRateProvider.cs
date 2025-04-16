@@ -2,5 +2,5 @@
 
 public interface IRateProvider
 {
-    double Rate(Currency currency, StockType stockType);
+    double Rate(StockType from, Currency to);
 }

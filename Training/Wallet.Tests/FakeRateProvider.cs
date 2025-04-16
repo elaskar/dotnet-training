@@ -2,10 +2,10 @@
 
 public class FakeRateProvider : IRateProvider
 {
-    public double Rate(Currency currency, StockType stockType)
+    public double Rate(StockType from, Currency to)
     {
-        if (currency == Currency.Dollar && stockType == StockType.Euro) return 2;
-        if (currency == Currency.Euro && stockType == StockType.Dollar) return 0.5;
+        if (to == Currency.Dollar && from == StockType.Euro) return 2;
+        if (to == Currency.Euro && from == StockType.Dollar) return 0.5;
         return 1;
     }
 }

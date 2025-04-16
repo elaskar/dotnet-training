@@ -70,6 +70,7 @@ public class CheatSheet
     public class TestSetup : IDisposable
     {
         // Some stuff here
+        // Some stuff here
     }
 
     public class TestClass : IClassFixture<TestSetup>
