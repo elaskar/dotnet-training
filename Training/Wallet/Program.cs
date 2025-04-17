@@ -39,7 +39,7 @@ app.MapGet("/wallets/{id}", (HttpRequest request, IRateProvider rateProvider) =>
     var currency = request.Query["currency"];
     var walletId = request.RouteValues["id"];
 
-    var wallet = new MyWallet(new Stock(1, StockType.Euro), new Stock(2, StockType.Dollar));
+    var wallet = new MyWallet(new WalletId("etienne"), new Stock(1, StockType.Euro), new Stock(2, StockType.Dollar));
 
     var walletValue = wallet.Value(Currency.Euro, rateProvider);
 
