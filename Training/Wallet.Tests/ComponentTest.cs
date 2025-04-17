@@ -121,7 +121,7 @@ public class ComponentTest(MyWebApplicationFactory<Program> factory) : IClassFix
             Detail = "Missing wallet id"
         };
 
-        var json = "{}";
+        const string json = "{}";
 
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -143,7 +143,7 @@ public class ComponentTest(MyWebApplicationFactory<Program> factory) : IClassFix
             Detail = "Wallet already exists"
         };
 
-        var json = """{"id":"lea"}""";
+        const string json = """{"id":"lea"}""";
 
 
         var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -162,7 +162,7 @@ public class ComponentTest(MyWebApplicationFactory<Program> factory) : IClassFix
         
         await CreateLeaWallet();
 
-        var json = """{"quantity": 5, "type": "EUR"}""";
+        const string json = """{"quantity": 5, "type": "EUR"}""";
 
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -173,7 +173,7 @@ public class ComponentTest(MyWebApplicationFactory<Program> factory) : IClassFix
 
     private async Task CreateLeaWallet()
     {
-        var json = """{"id":"lea"}""";
+        const string json = """{"id":"lea"}""";
 
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 

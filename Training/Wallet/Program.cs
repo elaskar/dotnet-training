@@ -57,7 +57,7 @@ app.MapPost("/wallets/new", async (HttpRequest request, ApplicationService appSe
     return Results.Created();
 });
 
-app.MapPost("/wallets/{walledId}/stocks/add",
+app.MapPost("/wallets/{walletId}/stocks/add",
     async (HttpRequest request, ApplicationService appService, string walletId) =>
     {
         var addStockRequest = await request.ReadFromJsonAsync<AddStockRequest>();
