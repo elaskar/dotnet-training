@@ -33,4 +33,18 @@ public class AcceptanceTest
     {
         Assert.Throws<WalletDoesNotExistException>(() => _appService.WalletValue(new WalletId("lea"), Currency.Euro));
     }
+
+    [Fact]
+    public void ShouldNotCreateNewWalletWithEmptyId()
+    {
+        Assert.Throws<EmptyWalletIdException>(() => _appService.CreateWallet(null));
+    }
+
+    [Fact]
+    public void ShouldCreateNewWallet()
+    {
+        _appService.CreateWallet(new WalletId("lea"));
+
+        Assert.Equal(0, _appService.WalletValue(new WalletId("lea"), Currency.Euro));
+    }
 }

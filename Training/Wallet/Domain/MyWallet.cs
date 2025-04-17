@@ -6,8 +6,6 @@ public enum Currency
     Dollar
 }
 
-public record WalletId(string Value);
-
 public class MyWallet(WalletId id, params Stock[] stocks)
 {
     private readonly List<Stock> _stocks = stocks.ToList();

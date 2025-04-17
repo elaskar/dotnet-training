@@ -11,4 +11,12 @@ public class ApplicationService(IWalletRepository wallets, IRateProvider ratePro
         if (myWallet == null) throw new WalletDoesNotExistException();
         return myWallet.Value(currency, rateProvider);
     }
+
+    public void CreateWallet(WalletId id)
+    {
+        if (id is null)
+            throw new EmptyWalletIdException();
+        var wallet = new MyWallet(id);
+        wallets.Save(wallet);
+    }
 }
