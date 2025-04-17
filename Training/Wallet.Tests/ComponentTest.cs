@@ -154,4 +154,29 @@ public class ComponentTest(MyWebApplicationFactory<Program> factory) : IClassFix
         Assert.Equal(HttpStatusCode.Conflict, response.StatusCode);
         Assert.Equivalent(problemDetails, await response.Content.ReadFromJsonAsync<ProblemDetails>());
     }
+
+    [Fact]
+    public async Task ShouldAddStocksToExistingWallet()
+    {
+        await using var application = new WebApplicationFactory<Program>();
+        
+        await CreateLeaWallet();
+
+        var json = """{"quantity": 5, "type": "EUR"}""";
+
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var response = await _httpClient.PostAsync("/wallets/lea/stocks/add", content);
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    private async Task CreateLeaWallet()
+    {
+        var json = """{"id":"lea"}""";
+
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        await _httpClient.PostAsync("/wallets/new", content);
+    }
 }

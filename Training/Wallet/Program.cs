@@ -57,12 +57,24 @@ app.MapPost("/wallets/new", async (HttpRequest request, ApplicationService appSe
     return Results.Created();
 });
 
+app.MapPost("/wallets/{walledId}/stocks/add",
+    async (HttpRequest request, ApplicationService appService, string walletId) =>
+    {
+        var addStockRequest = await request.ReadFromJsonAsync<AddStockRequest>();
+
+
+        appService.AddStock(new WalletId(walletId), new Stock(addStockRequest.Quantity, StockType.Euro));
+
+        return Results.Ok();
+    });
+
 app.Run();
 
 
 public record WalletValueResponse(double Value);
 
-
 public record NewWalletRequest(string? Id);
+
+public record AddStockRequest(double Quantity, string Type);
 
 public partial class Program;
