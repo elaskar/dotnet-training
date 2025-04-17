@@ -1,7 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ADouble_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003Fbb06f64c178142b0b2d10172f56d4911e8e928_003F2d_003F7f615620_003FDouble_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AHttpResponseMessage_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FSourcesCache_003F4cfeb8b377bc81e1fbb5f7d7a02492cb6ac23e88c8c9d7155944f0716f3d4b_003FHttpResponseMessage_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=567dea33_002Dc5ee_002D4a88_002Dbc50_002D280e1bd484de/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="WalletTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=567dea33_002Dc5ee_002D4a88_002Dbc50_002D280e1bd484de/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="WalletTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.WalletTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.ApiRateTest.ShouldGetEuroToDollarRate&lt;/TestId&gt;&#xD;
@@ -11,11 +11,13 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.WalletTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.ApiRateTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.E2ETest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d5355e16_002D9498_002D4525_002Db0f3_002D79ef703cfd3a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.WalletTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.ApiRateTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.E2ETest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

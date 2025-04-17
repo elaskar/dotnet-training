@@ -1,3 +1,5 @@
+using Wallet;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,10 +9,7 @@ builder.Services.AddOpenApi();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+if (app.Environment.IsDevelopment()) app.MapOpenApi();
 
 app.UseHttpsRedirection();
 
@@ -33,9 +32,30 @@ app.MapGet("/weatherforecast", () =>
     })
     .WithName("GetWeatherForecast");
 
+app.MapGet("/wallets/{id}", (HttpRequest request) =>
+{
+    var currency = request.Query["currency"];
+    var walletId = request.RouteValues["id"];
+
+    var wallet = new MyWallet(new Stock(1, StockType.Euro), new Stock(2, StockType.Dollar));
+
+    var walletValue = wallet.Value(Currency.Euro, new RestRateProvider());
+
+    return new WalletValueResponse(walletValue);
+});
+
+
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+}
+
+public record WalletValueResponse(double Value)
+{
+}
+
+public partial class Program
+{
 }
