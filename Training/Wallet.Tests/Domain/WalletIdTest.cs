@@ -1,7 +1,7 @@
 ﻿using Wallet.Domain;
 using Wallet.Domain.Exception;
 
-namespace Wallet.Tests;
+namespace Wallet.Tests.Domain;
 
 public class WalletIdTest
 {
