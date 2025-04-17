@@ -1,4 +1,9 @@
-﻿namespace Wallet.Tests;
+﻿using Wallet.Application;
+using Wallet.Domain;
+using Wallet.Domain.Exception;
+using Wallet.Secondary;
+
+namespace Wallet.Tests;
 
 public class AcceptanceTest
 {

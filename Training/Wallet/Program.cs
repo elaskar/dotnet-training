@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Wallet;
+using Wallet.Application;
+using Wallet.Domain;
+using Wallet.Primary;
+using Wallet.Secondary;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,7 +41,7 @@ app.MapGet("/wallets/{walletId}", (HttpRequest request, ApplicationService appSe
 
     var walletValue = appService.WalletValue(new WalletId(walletId),
         CurrencyMapper.ToDomain(currency));
-    
+
     return Results.Ok(new WalletValueResponse(walletValue));
 });
 
@@ -50,41 +51,6 @@ app.Run();
 
 public record WalletValueResponse(double Value)
 {
-}
-
-public class CustomExceptionHandler : IExceptionHandler
-{
-    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception,
-        CancellationToken cancellationToken)
-    {
-        var problemDetails = exception switch
-        {
-            WalletDoesNotExistException => new ProblemDetails
-            {
-                Title = "Wallet not found",
-                Status = StatusCodes.Status404NotFound,
-                Detail = "Wallet not found for id lea"
-            },
-            IllegalArgumentException => new ProblemDetails
-            {
-                Title = "Illegal Argument Exception",
-                Status = StatusCodes.Status400BadRequest,
-                Detail = exception.Message
-            },
-            _ => new ProblemDetails
-            {
-                Title = "Missing currency",
-                Status = StatusCodes.Status500InternalServerError,
-                Detail = "Missing currency"
-            }
-        };
-
-
-        httpContext.Response.StatusCode = problemDetails.Status!.Value;
-        await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
-
-        return true;
-    }
 }
 
 public partial class Program

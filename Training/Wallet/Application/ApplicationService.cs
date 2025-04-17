@@ -1,4 +1,7 @@
-﻿namespace Wallet;
+﻿using Wallet.Domain;
+using Wallet.Domain.Exception;
+
+namespace Wallet.Application;
 
 public class ApplicationService(IWalletRepository wallets, IRateProvider rateProvider)
 {

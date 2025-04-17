@@ -1,4 +1,4 @@
-﻿namespace Wallet;
+﻿namespace Wallet.Domain;
 
 public interface IRateProvider
 {

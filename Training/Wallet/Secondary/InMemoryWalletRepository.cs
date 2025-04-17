@@ -1,4 +1,6 @@
-﻿namespace Wallet;
+﻿using Wallet.Domain;
+
+namespace Wallet.Secondary;
 
 public class InMemoryWalletRepository : IWalletRepository
 {

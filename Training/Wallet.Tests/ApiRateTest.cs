@@ -1,3 +1,6 @@
+using Wallet.Domain;
+using Wallet.Secondary;
+
 namespace Wallet.Tests;
 
 public class ApiRateTest

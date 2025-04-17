@@ -1,4 +1,6 @@
-﻿namespace Wallet.Tests;
+﻿using Wallet.Domain;
+
+namespace Wallet.Tests;
 
 public class FakeRateProvider : IRateProvider
 {

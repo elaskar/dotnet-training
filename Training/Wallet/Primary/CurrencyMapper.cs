@@ -1,4 +1,6 @@
-﻿namespace Wallet;
+﻿using Wallet.Domain;
+
+namespace Wallet.Primary;
 
 public static class CurrencyMapper
 {
@@ -12,5 +14,3 @@ public static class CurrencyMapper
         };
     }
 }
-
-public class IllegalArgumentException(string error) : Exception(error);

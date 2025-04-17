@@ -1,15 +1,11 @@
-﻿namespace Wallet.Tests;
+﻿using Wallet.Domain;
+
+namespace Wallet.Tests;
 
 public class WalletTest
 {
-    private static readonly Stock OneEuro = new(1, StockType.Euro);
     private readonly FakeRateProvider _fakeRateProvider = new();
-
-    // public static IEnumerable<object[]> _cases =
-    // [
-    //     new object[] { new List<Stock> { OneEuro }, Currency.Euro, 1 }
-    // ];
-
+    
     [Fact]
     public void ShouldBeValuatedToZeroWhenEmpty()
     {

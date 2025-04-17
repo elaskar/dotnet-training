@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
+using Wallet.Domain;
 
-namespace Wallet;
+namespace Wallet.Secondary;
 
 public class RestRateProvider : IRateProvider
 {
