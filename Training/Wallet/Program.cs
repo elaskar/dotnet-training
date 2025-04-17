@@ -45,14 +45,24 @@ app.MapGet("/wallets/{walletId}", (HttpRequest request, ApplicationService appSe
     return Results.Ok(new WalletValueResponse(walletValue));
 });
 
+app.MapPost("/wallets/new", async (HttpRequest request, ApplicationService appService) =>
+{
+    var newWalletRequest = await request.ReadFromJsonAsync<NewWalletRequest>();
+
+    if (newWalletRequest!.Id is null || newWalletRequest.Id.Length == 0)
+        throw new IllegalArgumentException("Missing wallet id");
+
+    appService.CreateWallet(new WalletId(newWalletRequest.Id));
+
+    return Results.Created();
+});
 
 app.Run();
 
 
-public record WalletValueResponse(double Value)
-{
-}
+public record WalletValueResponse(double Value);
 
-public partial class Program
-{
-}
+
+public record NewWalletRequest(string? Id);
+
+public partial class Program;

@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
+using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -107,5 +108,40 @@ public class ComponentTest(MyWebApplicationFactory<Program> factory) : IClassFix
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         Assert.Equivalent(problemDetails, await response.Content.ReadFromJsonAsync<ProblemDetails>());
+    }
+
+    [Fact]
+    public async Task ShouldNotCreateAWalletWithoutId()
+    {
+        await using var application = new WebApplicationFactory<Program>();
+        var problemDetails = new ProblemDetails
+        {
+            Title = "Illegal Argument Exception",
+            Status = StatusCodes.Status400BadRequest,
+            Detail = "Missing wallet id"
+        };
+
+        var json = "{}";
+
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var response = await _httpClient.PostAsync("/wallets/new", content);
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        Assert.Equivalent(problemDetails, await response.Content.ReadFromJsonAsync<ProblemDetails>());
+    }
+
+    [Fact]
+    public async Task ShouldCreateWallet()
+    {
+        await using var application = new WebApplicationFactory<Program>();
+
+        var json = """{"id":"lea"}""";
+
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var response = await _httpClient.PostAsync("/wallets/new", content);
+
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
     }
 }

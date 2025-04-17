@@ -16,6 +16,7 @@ public class ApplicationService(IWalletRepository wallets, IRateProvider ratePro
     {
         if (id is null)
             throw new EmptyWalletIdException();
+
         var wallet = new MyWallet(id);
         wallets.Save(wallet);
     }
