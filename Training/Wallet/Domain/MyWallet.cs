@@ -17,4 +17,9 @@ public class MyWallet(WalletId id, params Stock[] stocks)
 
         return _stocks.Select(stock => stock.Quantity * rateProvider.Rate(stock.Type, currency)).Sum();
     }
+
+    public void Add(Stock stock)
+    {
+        _stocks.Add(stock);
+    }
 }

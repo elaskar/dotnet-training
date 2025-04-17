@@ -43,7 +43,7 @@ public class AcceptanceTest
     [Fact]
     public void ShouldCreateNewWallet()
     {
-        _appService.CreateWallet(new WalletId("lea"));
+        _appService.CreateWallet(LeaWalletId());
 
         Assert.Equal(0, _appService.WalletValue(new WalletId("lea"), Currency.Euro));
     }
@@ -51,9 +51,30 @@ public class AcceptanceTest
     [Fact]
     public void ShouldNotCreateNewWalletTwice()
     {
-        _appService.CreateWallet(new WalletId("lea"));
+        _appService.CreateWallet(LeaWalletId());
 
 
-        Assert.Throws<WalletAlreadyExistsException>(() => _appService.CreateWallet(new WalletId("lea")));
+        Assert.Throws<WalletAlreadyExistsException>(() => _appService.CreateWallet(LeaWalletId()));
+    }
+
+    [Fact]
+    public void ShouldAddStocksToWallet()
+    {
+        _appService.CreateWallet(LeaWalletId());
+        _appService.AddStock(LeaWalletId(), new Stock(2, StockType.Dollar));
+
+        Assert.Equal(2, _appService.WalletValue(LeaWalletId(), Currency.Dollar));
+    }
+
+    [Fact]
+    public void ShouldNotAddStocksToInexistantWallet()
+    {
+        Assert.Throws<WalletDoesNotExistException>(() =>
+            _appService.AddStock(LeaWalletId(), new Stock(2, StockType.Dollar)));
+    }
+
+    private static WalletId LeaWalletId()
+    {
+        return new WalletId("lea");
     }
 }

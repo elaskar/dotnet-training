@@ -13,6 +13,7 @@ public class InMemoryWalletRepository : IWalletRepository
 
     public void Save(MyWallet wallet)
     {
+        _wallets.Remove(wallet.Id);
         _wallets.Add(wallet.Id, wallet);
     }
 

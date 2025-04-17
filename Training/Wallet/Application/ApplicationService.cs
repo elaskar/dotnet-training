@@ -7,9 +7,8 @@ public class ApplicationService(IWalletRepository wallets, IRateProvider ratePro
 {
     public double WalletValue(WalletId id, Currency currency)
     {
-        var myWallet = wallets.Get(id);
-        if (myWallet == null) throw new WalletDoesNotExistException();
-        return myWallet.Value(currency, rateProvider);
+        var wallet = GetWalletOrThrow(id);
+        return wallet.Value(currency, rateProvider);
     }
 
     public void CreateWallet(WalletId id)
@@ -21,5 +20,20 @@ public class ApplicationService(IWalletRepository wallets, IRateProvider ratePro
 
         var wallet = new MyWallet(id);
         wallets.Save(wallet);
+    }
+
+    public void AddStock(WalletId id, Stock stock)
+    {
+        var wallet = GetWalletOrThrow(id);
+
+        wallet.Add(stock);
+        wallets.Save(wallet);
+    }
+
+    private MyWallet GetWalletOrThrow(WalletId id)
+    {
+        var wallet = wallets.Get(id);
+        if (wallet == null) throw new WalletDoesNotExistException();
+        return wallet;
     }
 }
