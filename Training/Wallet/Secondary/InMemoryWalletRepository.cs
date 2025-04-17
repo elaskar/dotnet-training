@@ -15,4 +15,9 @@ public class InMemoryWalletRepository : IWalletRepository
     {
         _wallets.Add(wallet.Id, wallet);
     }
+
+    public bool Contains(WalletId id)
+    {
+        return _wallets.ContainsKey(id);
+    }
 }

@@ -11,6 +11,12 @@ public class CustomExceptionHandler : IExceptionHandler
     {
         var problemDetails = exception switch
         {
+            WalletAlreadyExistsException => new ProblemDetails
+            {
+                Title = "Wallet already exists",
+                Status = StatusCodes.Status409Conflict,
+                Detail = "Wallet already exists"
+            },
             WalletDoesNotExistException => new ProblemDetails
             {
                 Title = "Wallet not found",

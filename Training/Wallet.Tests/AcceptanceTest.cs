@@ -47,4 +47,13 @@ public class AcceptanceTest
 
         Assert.Equal(0, _appService.WalletValue(new WalletId("lea"), Currency.Euro));
     }
+
+    [Fact]
+    public void ShouldNotCreateNewWalletTwice()
+    {
+        _appService.CreateWallet(new WalletId("lea"));
+
+
+        Assert.Throws<WalletAlreadyExistsException>(() => _appService.CreateWallet(new WalletId("lea")));
+    }
 }

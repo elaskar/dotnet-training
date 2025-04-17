@@ -136,12 +136,22 @@ public class ComponentTest(MyWebApplicationFactory<Program> factory) : IClassFix
     {
         await using var application = new WebApplicationFactory<Program>();
 
+        var problemDetails = new ProblemDetails
+        {
+            Title = "Wallet already exists",
+            Status = StatusCodes.Status409Conflict,
+            Detail = "Wallet already exists"
+        };
+
         var json = """{"id":"lea"}""";
+
 
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
+        await _httpClient.PostAsync("/wallets/new", content);
         var response = await _httpClient.PostAsync("/wallets/new", content);
 
-        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+        Assert.Equal(HttpStatusCode.Conflict, response.StatusCode);
+        Assert.Equivalent(problemDetails, await response.Content.ReadFromJsonAsync<ProblemDetails>());
     }
 }
