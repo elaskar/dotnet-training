@@ -2,6 +2,8 @@ using Wallet;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton<IRateProvider, RestRateProvider>();
+
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -32,14 +34,14 @@ app.MapGet("/weatherforecast", () =>
     })
     .WithName("GetWeatherForecast");
 
-app.MapGet("/wallets/{id}", (HttpRequest request) =>
+app.MapGet("/wallets/{id}", (HttpRequest request, IRateProvider rateProvider) =>
 {
     var currency = request.Query["currency"];
     var walletId = request.RouteValues["id"];
 
     var wallet = new MyWallet(new Stock(1, StockType.Euro), new Stock(2, StockType.Dollar));
 
-    var walletValue = wallet.Value(Currency.Euro, new RestRateProvider());
+    var walletValue = wallet.Value(Currency.Euro, rateProvider);
 
     return new WalletValueResponse(walletValue);
 });

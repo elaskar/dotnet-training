@@ -19,5 +19,7 @@
     &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.WalletTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.ApiRateTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.E2ETest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8B0056D0-1C2E-495C-A2E3-A1CA7AE38088::net9.0::Wallet.Tests.ComponentTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::12602F45-9405-4D22-8E34-8E7986AA36DA::net9.0::Wallet.E2E.Tests.E2ETest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
