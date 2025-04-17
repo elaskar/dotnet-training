@@ -1,4 +1,4 @@
-﻿namespace Wallet.Tests;
+﻿namespace Wallet;
 
 public class InMemoryWalletRepository : IWalletRepository
 {
@@ -6,7 +6,7 @@ public class InMemoryWalletRepository : IWalletRepository
 
     public MyWallet? Get(WalletId id)
     {
-        return _wallets[id];
+        return _wallets.GetValueOrDefault(id);
     }
 
     public void Save(MyWallet wallet)

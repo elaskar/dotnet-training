@@ -1,61 +1,90 @@
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using Wallet;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IRateProvider, RestRateProvider>();
+builder.Services.AddSingleton<ApplicationService, ApplicationService>();
+builder.Services.AddSingleton<IWalletRepository, InMemoryWalletRepository>();
+
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 
 var app = builder.Build();
+app.UseExceptionHandler();
+
+// Todo : virer le setup
+using var scope = app.Services.CreateScope();
+var db = scope.ServiceProvider.GetRequiredService<IWalletRepository>();
+db.Save(new MyWallet(new WalletId("etienne"), new Stock(1, StockType.Euro),
+    new Stock(2, StockType.Dollar)));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) app.MapOpenApi();
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+
+app.MapGet("/wallets/{walletId}", (HttpRequest request, ApplicationService appService, string walletId) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var currency = request.Query["currency"].FirstOrDefault();
 
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast");
+    if (currency is null || currency.Length == 0)
+        throw new IllegalArgumentException("Missing currency");
 
-app.MapGet("/wallets/{id}", (HttpRequest request, IRateProvider rateProvider) =>
-{
-    var currency = request.Query["currency"];
-    var walletId = request.RouteValues["id"];
-
-    var wallet = new MyWallet(new WalletId("etienne"), new Stock(1, StockType.Euro), new Stock(2, StockType.Dollar));
-
-    var walletValue = wallet.Value(Currency.Euro, rateProvider);
-
-    return new WalletValueResponse(walletValue);
+    var walletValue = appService.WalletValue(new WalletId(walletId),
+        CurrencyMapper.ToDomain(currency));
+    
+    return Results.Ok(new WalletValueResponse(walletValue));
 });
 
 
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
 
 public record WalletValueResponse(double Value)
 {
+}
+
+public class CustomExceptionHandler : IExceptionHandler
+{
+    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception,
+        CancellationToken cancellationToken)
+    {
+        var problemDetails = exception switch
+        {
+            WalletDoesNotExistException => new ProblemDetails
+            {
+                Title = "Wallet not found",
+                Status = StatusCodes.Status404NotFound,
+                Detail = "Wallet not found for id lea"
+            },
+            IllegalArgumentException => new ProblemDetails
+            {
+                Title = "Illegal Argument Exception",
+                Status = StatusCodes.Status400BadRequest,
+                Detail = exception.Message
+            },
+            _ => new ProblemDetails
+            {
+                Title = "Missing currency",
+                Status = StatusCodes.Status500InternalServerError,
+                Detail = "Missing currency"
+            }
+        };
+
+
+        httpContext.Response.StatusCode = problemDetails.Status!.Value;
+        await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
+
+        return true;
+    }
 }
 
 public partial class Program

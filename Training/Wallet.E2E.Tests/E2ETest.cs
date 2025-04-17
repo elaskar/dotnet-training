@@ -12,7 +12,7 @@ public class E2ETest
         await using var application = new WebApplicationFactory<Program>();
         using var client = application.CreateClient();
 
-        var response = await client.GetAsync("/wallets/etienne?currency=euro");
+        var response = await client.GetAsync("/wallets/etienne?currency=EUR");
 
         var readFromJsonAsync = await response.Content.ReadFromJsonAsync<WalletValueResponse>();
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);

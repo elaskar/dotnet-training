@@ -4,6 +4,8 @@ public class ApplicationService(IWalletRepository wallets, IRateProvider ratePro
 {
     public double WalletValue(WalletId id, Currency currency)
     {
-        return wallets.Get(id)!.Value(currency, rateProvider);
+        var myWallet = wallets.Get(id);
+        if (myWallet == null) throw new WalletDoesNotExistException();
+        return myWallet.Value(currency, rateProvider);
     }
 }
