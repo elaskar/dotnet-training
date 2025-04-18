@@ -1,9 +1,9 @@
 using Wallet.Domain;
 using Wallet.Secondary;
 
-namespace Wallet.Tests;
+namespace Wallet.Tests.Secondary;
 
-public class ApiRateTest
+public class RestRateProviderTest
 {
     [Fact(Skip = "flemme")]
     private void ShouldGetEuroToDollarRate()

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Wallet.Domain;
+using Wallet.Tests.Secondary;
 
 namespace Wallet.Tests;
 

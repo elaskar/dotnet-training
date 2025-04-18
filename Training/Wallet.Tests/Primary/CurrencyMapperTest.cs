@@ -1,7 +1,7 @@
 ﻿using Wallet.Domain;
 using Wallet.Primary;
 
-namespace Wallet.Tests;
+namespace Wallet.Tests.Primary;
 
 public class CurrencyMapperTest
 {

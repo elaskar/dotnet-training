@@ -1,6 +1,7 @@
 ﻿using Wallet.Domain;
+using Wallet.Tests.Secondary;
 
-namespace Wallet.Tests;
+namespace Wallet.Tests.Domain;
 
 public class WalletTest
 {

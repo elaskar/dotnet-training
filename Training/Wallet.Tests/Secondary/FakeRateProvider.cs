@@ -1,6 +1,6 @@
 ﻿using Wallet.Domain;
 
-namespace Wallet.Tests;
+namespace Wallet.Tests.Secondary;
 
 public class FakeRateProvider : IRateProvider
 {
